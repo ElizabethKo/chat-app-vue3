@@ -1,5 +1,9 @@
-# chat-app-reenbit
-
+# chat-app-vue3
+chat-app with api
+<ul>
+<li>vue3</li>
+<li>axios</li>
+</ul>
 ## Project setup
 ```
 npm install
