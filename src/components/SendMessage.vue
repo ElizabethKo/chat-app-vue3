@@ -1,12 +1,14 @@
 <template>
   <div @click.prevent>
+
     <textarea
-    class="textarea-container"
-    placeholder="Type your message"
-    v-model="messageText"
-    @keyup.enter="sendMessage"
+        ref="focusRef"
+        class="textarea-container"
+        placeholder="Type your message"
+        v-model="messageText"
+        @keyup.enter="sendMessage"
     ></textarea>
-    <button class="send"  @click.stop="sendMessage">Send</button>
+    <button class="send" @click.stop="sendMessage">Send</button>
   </div>
 </template>
 
@@ -24,14 +26,22 @@ export default {
   },
   data() {
     return {
-      messageText: ''
+      messageText: '',
+      item: {
+        image: null,
+        imageUrl: null
+      }
     }
+  },
+  mounted() {
+    this.$refs.focusRef.focus()
   },
   methods: {
     sendMessage() {
       this.$emit('send', {"contact":this.contact, "message": this.messageText, "createdAt": new Date()})
       this.messageText = '';
-    }
+    },
+
   }
 }
 </script>
@@ -42,7 +52,6 @@ textarea {
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   resize: none;
-  overflow-y: scroll;
   width: 100%;
   height: 8vh;
   padding-right: 18px;
@@ -51,8 +60,8 @@ textarea {
 }
 .send {
   border: none;
-  background: darkseagreen;
-  color: white;
+  background: lightgray;
+  color: rgba(239, 245, 39);
   font-size: 17px;
   border-radius: 50%;
   position: absolute;

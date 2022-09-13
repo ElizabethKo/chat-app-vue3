@@ -8,14 +8,18 @@
     </div>
     <div class="main-view">
       <div class="content">
-<ContactList
-:user="user"
-@newContact="addNewContact"
-/>
-    <ChatRoom
-    :user="user"
-    >
-    </ChatRoom>
+        <ContactList
+            :user="user"
+            @newContact="addNewContact"
+        />
+        <div>
+          <p class="selectChat" :class="{hide:isHidden}" >Select a chat to start messaging</p>
+          <ChatRoom
+              :user="user"
+
+          >
+          </ChatRoom>
+        </div>
       </div>
 
     </div>
@@ -35,30 +39,36 @@ export default {
     user: {
       id: 1 , name: 'li', contactList: [{id: 2, name: 'Ed'},{id: 3, name: 'Boris'},{id: 4, name: 'Emma'}]
     },
+      isHidden: false
     }
   },
   methods: {
     addNewContact(contact) {
       this.user.contactList.push(contact)
-
-    }
+    },
+  },
+  mounted() {
+    this.emitter.on("hideSelect", (event) => {
+      this.isHidden = event.isHidden
+    })
   }
 }
 </script>
 
 <style >
 body {
+
   height: 100%;
+  background: lightgray;
 }
 
 .container {
   display: grid;
   grid-template-columns: 80px auto;
-  /*grid-template-rows: 100vh;*/
-  background: antiquewhite;
+
 }
 .side-nav {
-  background: darkseagreen;
+  background: rgba(239, 245, 39, 0.3);
   font-size: 25px;
   text-align: center;
   height: auto;
@@ -90,5 +100,15 @@ body {
     grid-template-columns: auto;
   }
 }
-
+.hide {
+  visibility: hidden;
+}
+.selectChat {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: gray;
+  font-family: fantasy;
+  text-shadow: 1px 5px 3px rgba(239, 245, 39, 0.5);
+}
 </style>

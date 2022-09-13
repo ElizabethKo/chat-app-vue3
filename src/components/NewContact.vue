@@ -62,4 +62,30 @@ export default {
   min-width: 300px;
   padding: 20px;
 }
+button {
+  font-size: 12px;
+  border-radius: 50px 50px 50px 50px;
+  outline: none;
+  border: none;
+  background: whitesmoke;
+  box-shadow: 1px 1px 3px 1px;
+  color: black;
+  margin: 7px;
+  width: 75px;
+  padding: 14px;
+}
+input {
+  display: inline;
+  font-size: 16px;
+  border-radius: 50px 50px 50px 50px;
+  outline: none;
+  border: none;
+  background: whitesmoke;
+  box-shadow: 1px 1px 3px 1px;
+  color: black;
+  margin: auto;
+  width: 170px;
+  padding: 7px;
+}
+
 </style>

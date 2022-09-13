@@ -1,37 +1,37 @@
 <template>
   <div v-if="chats[contact.id]">
-  <div class="message-container">
-    <div
-        v-for="member in members"
-        :key="member.id"
-    >
-      <div class="friend-chat sticky" id="header">{{ member.name }}</div>
-    </div>
-  <div v-for="(messages, index) in chats[contact.id]"
-       :key="index"
-  >
-    <div v-for="(message, index) in messages"
-       :key="index"
-         :class="message.style"
-    >
-      {{ message.text}}
-      <DeleteMessage
-      @remove="deleteMessage(index,contact)"
-      />
-      <p class="date-time" v-if="message.user"
-      > {{ message.createdAt.toLocaleDateString() }}
-        {{ message.createdAt.toLocaleTimeString()  }}
+    <div class="message-container" >
+      <div
+          v-for="member in members"
+          :key="member.id"
+      >
+        <div class="friend-chat sticky" id="header">{{ member.name }}</div>
+      </div>
+      <div v-for="(messages, index) in chats[contact.id]"
+           :key="index"
+      >
+        <div v-for="(message, index) in messages"
+             :key="index"
+             :class="message.style"
+        >
+          {{ message.text }}
+          <DeleteMessage
+              @remove="deleteMessage(index,contact)"
+          />
+          <p class="date-time" v-if="message.user"
+          > {{ message.createdAt.toLocaleDateString() }}
+            {{ message.createdAt.toLocaleTimeString() }}
 
-      </p>
-      <span v-else
-            :style="dateTime">
+          </p>
+          <span v-else
+                :style="dateTime">
         {{ message.createdAt.toLocaleDateString() }}
-        {{ message.createdAt.toLocaleTimeString()  }}
+        {{ message.createdAt.toLocaleTimeString() }}
         </span>
-    </div>
+        </div>
 
-  </div>
-  </div>
+      </div>
+    </div>
     <SendMessage
         :contact="contact"
         @send="sendMessage"
@@ -56,7 +56,7 @@ export default {
           id: Number,
           name: String,
         }
-  },
+        },
   data() {
     return {
       chats: {
@@ -108,7 +108,7 @@ export default {
   min-height: 25px;
   width: 50%;
   margin: 50px 10px;
-  background: lightgray;
+  background: white;
   border: 1px solid white;
   border-radius: 25px;
   padding: 10px;
@@ -129,10 +129,8 @@ export default {
 
 .message-container {
   padding: 0 18px 500px 0;
-  overflow-y: scroll;
   width: 100%;
   box-sizing: content-box;
-  background: gray;
 }
 /*sticky header*/
 .friend-chat {
@@ -140,10 +138,12 @@ export default {
   width: 50%;
   border: 1px solid white;
   background: #cccccc;
+  text-align: center;
 }
 .sticky {
   position: fixed;
   top: 7px;
-  width: 100%;
+  width: 65%;
 }
+
 </style>

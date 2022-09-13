@@ -1,7 +1,7 @@
 <template>
   <div >
     <div class="message-list">
-    <div class="list-top">
+      <div class="list-top">
      <input type="text" placeholder="search" v-model="search" class="input">
       <button class="new-friend-btn" @click.stop="showModal">+</button>
     </div>
@@ -50,6 +50,7 @@ export default {
   methods: {
     selectChat(contact) {
       this.emitter.emit('creatingSingleRoom', { "contact": contact})
+      this.emitter.emit('hideSelect', {"isHidden": true})
     },
     showModal() {
       this.modalVisible = true;
@@ -80,6 +81,7 @@ export default {
 }
 .message-list {
   height: 100%;
+  border: 2px solid white;
 }
 
 @media screen and (max-width: 640px) {
@@ -96,25 +98,12 @@ export default {
   padding: 5px;
 }
 
-/*.message-list .list-top .close-list {*/
-/*  !*display: none;*!*/
-/*}*/
+
 
 @media screen and (max-width: 640px) {
   .message-list .list-top {
     grid-template-columns: 60% 20% 10% 10%;
   }
-  /*.message-list .list-top .close-list {*/
-  /*  display: block;*/
-  /*  position: absolute;*/
-  /*  background: transparent;*/
-  /*  border: none;*/
-  /*  content: "\2039";*/
-  /*  font-size: 20px;*/
-  /*  color: black;*/
-  /*  top: 15px;*/
-  /*  right: 15px;*/
-  /*}*/
 }
 
 .message-list .input {
@@ -149,7 +138,7 @@ export default {
   padding: 10px;
   box-shadow: 1px 1px 1px 1px;
   border-radius: 0 30px 30px 0;
-  color: black;
+  color: white;
   position: relative;
 }
 
@@ -164,7 +153,7 @@ export default {
 .message-list .name {
   margin: 5px 10px;
   font-size: 16px;
-  font-weight: 100;
+  font-weight: bold;
 }
 
 .message-list img {
